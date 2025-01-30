@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Routes, Route, Outlet, Link } from "react-router";
 import Home from "./routes/Home";
+import Character from "./routes/Character";
 import Characters from "./routes/Characters";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/characters" element={<Characters />} />
+          <Route path="/character/:characterId" element={<Character />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
