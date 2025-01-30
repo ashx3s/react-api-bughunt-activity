@@ -4,6 +4,7 @@ import PageHeader from "../../components/PageHeader";
 export default function Characters() {
   // state for characters
   const [characters, setCharacters] = useState([]);
+
   useEffect(() => {
     async function getCharacters() {
       const apiUrl = "https://api.disneyapi.dev/character";
@@ -20,7 +21,6 @@ export default function Characters() {
     }
     getCharacters();
   }, []);
-  console.log(characters);
   return (
     <main>
       <PageHeader
