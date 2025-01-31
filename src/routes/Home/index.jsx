@@ -1,18 +1,57 @@
+import { useState, useEffect } from "react";
+import PageHeader from "../../components/PageHeader";
+
+const headerContent = {
+  title: "Home Page",
+  description:
+    "Use your home page to test and experiment or to display alternative strategies to rendering content. Consider making a reusable PageHeader component using props for the title and description.",
+};
 export default function Home() {
+  // state for characters
+  const [characters, setCharacters] = useState([]);
+
+  useEffect(() => {
+    async function getCharacters() {
+      const apiUrl = "https://api.disneyapi.dev/character";
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP error status: ${response.status}`);
+        }
+        // This is not an optimized example because we are still fetching 50 elements and then on the client side cutting it down to six
+        // TODO: Is there a way to limit the amount of data requested from the API?
+        const data = await response.json();
+        const characters = data.data.slice(0, 6);
+        setCharacters(characters);
+      } catch (err) {
+        console.error("Error fetching characters", err);
+      }
+    }
+    getCharacters();
+  }, []);
   return (
     <>
-      <header className="flex flex-col justify-center py-12">
-        <h1 className="mb-4 max-w-prose text-6xl">Home Page</h1>
-        <p className="max-w-prose">
-          Use your home page to test and experiment or to display alternative
-          strategies to rendering content.{" "}
-          <em>
-            Consider making a reusable PageHeader component using props for the
-            title and description.
-          </em>
-        </p>
-      </header>
-      <div></div>
+      <PageHeader {...headerContent} />
+      <div>
+        <h2>First 6 Characters</h2>
+        {characters.map((character) => {
+          return (
+            <article key={character._id}>
+              <h3 className="text-2xl font-bold">{character.name}</h3>
+              <img src={character.imageUrl} alt={character.name} />
+              <div className="my-4 max-w-fit rounded-md bg-gray-800 p-4">
+                {/* {/*                  */}
+                <h4 className="text-xl font-bold">Movies</h4>
+                <ul>
+                  {character.films.map((movie, index) => {
+                    return <li key={index}>{movie}</li>;
+                  })}
+                </ul>
+              </div>
+            </article>
+          );
+        })}
+      </div>
     </>
   );
 }
