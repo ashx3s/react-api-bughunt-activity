@@ -2,7 +2,31 @@
 
 This code is based on the React API challenges code and has broken examples of some of the challenges proposed in the other codebase. However these include syntax and logic errors that you'll need to debug
 
-## Debugging Challenges
+## Debugging Strategies
+
+- Walk through the errors that are occuring, identify problem files
+- Scan for easy to catch syntax errors
+- Walk through the code to understand what it's trying to accomplish
+- Look for logic errors (likely involving stepping through the code)
+- Research syntax that is unfamiliar
+  - Keywords or code patterns
+  - Syntax that looks weird or wrong
+- **Comment out code to isolate a single issue**
+  - this is huge, make sure you're able to get feedback on the changes you make
+- Make a test repo: Isolate some of the code in a fresh react app (use the vite approach with js) and try to fix a specific issue there
+  - this is another way to single out issues and make sure you're working on the right problem
+
+### Types of Bugs
+
+- syntax errors
+- referring incorrectly to the [API](https://disneyapi.dev/docs/)
+- logic errors
+- rendering errors (not referring to the data correctly)
+- react errors: state management, import/exports, syntax conventions
+
+_Hints as to where to find solutions have been interspersed throughout the code_
+
+---
 
 ## Styling Notes
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PageHeader from "../../components/PageHeader";
+import pageHeader from "../../components/PageHeader";
 
 const headerContent = {
   title: "Home Page",
@@ -7,8 +7,7 @@ const headerContent = {
     "Use your home page to test and experiment or to display alternative strategies to rendering content. Consider making a reusable PageHeader component using props for the title and description.",
 };
 export default function Home() {
-  // state for characters
-  const [characters, setCharacters] = useState([]);
+  const [character, setCharacters] = useState([]);
 
   useEffect(() => {
     async function getCharacters() {
@@ -21,8 +20,8 @@ export default function Home() {
         // This is not an optimized example because we are still fetching 50 elements and then on the client side cutting it down to six
         // TODO: Is there a way to limit the amount of data requested from the API?
         const data = await response.json();
-        const characters = data.data.slice(0, 6);
-        setCharacters(characters);
+        const characters = data.data.slice(0, 2);
+        setCharacters(character);
       } catch (err) {
         console.error("Error fetching characters", err);
       }
@@ -31,10 +30,10 @@ export default function Home() {
   }, []);
   return (
     <>
-      <PageHeader {...headerContent} />
+      <pageHeader {...headerContent} />
       <div>
         <h2>First 6 Characters</h2>
-        {characters.map((character) => {
+        {character.map((character) => {
           return (
             <article key={character._id}>
               <h3 className="text-2xl font-bold">{character.name}</h3>
@@ -44,7 +43,7 @@ export default function Home() {
                 <h4 className="text-xl font-bold">Movies</h4>
                 <ul>
                   {character.films.map((movie, index) => {
-                    return <li key={index}>{movie}</li>;
+                    return <li>{movie}</li>;
                   })}
                 </ul>
               </div>

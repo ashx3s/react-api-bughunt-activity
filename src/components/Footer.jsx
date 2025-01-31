@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-export default function Footer() {
+export default function footer() {
   return (
     <footer className="mx-4 my-12 lg:mx-12">
       <ul className="flex flex-col items-center gap-2 text-center">

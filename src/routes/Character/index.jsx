@@ -6,7 +6,7 @@ export default function Character() {
 
   useEffect(() => {
     async function getCharacter() {
-      const apiUrl = `https://api.disneyapi.dev/character/${characterId}`;
+      const apiUrl = `https://api.disneyapi.dev/character/${character}`;
       try {
         const response = await fetch(apiUrl);
         if (!response.ok) {

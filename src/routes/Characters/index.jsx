@@ -14,12 +14,12 @@ export default function Characters() {
           throw new Error(`HTTP error status: ${response.status}`);
         }
         const characters = await response.json();
-        setCharacters(characters.data);
+        setCharacters(characters);
       } catch (err) {
         console.error("Error fetching characters", err);
       }
     }
-    getCharacters();
+    //
   }, []);
   return (
     <main>
@@ -29,11 +29,11 @@ export default function Characters() {
       />
       <div>
         <ul>
-          {characters.map((character) => {
+          {characters.map((char) => {
             return (
               <li key={character._id} className="my-6">
                 <h3 className="mb-2 text-2xl">{character.name}</h3>
-                <img src={character.imageUrl} alt={character.name} />
+                <img src={character.img} alt={character.name} />
               </li>
             );
           })}
